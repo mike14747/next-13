@@ -1,4 +1,4 @@
-export default function Test() {
+export default function Page() {
     return (
         <>
             <p>

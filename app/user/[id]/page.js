@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function User({ params: { id } }) {
+export default function Page({ params: { id } }) {
     return (
         <>
             <p>
@@ -14,6 +14,6 @@ export default function User({ params: { id } }) {
     );
 }
 
-User.propTypes = {
+Page.propTypes = {
     params: PropTypes.number,
 };
