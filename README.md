@@ -178,6 +178,36 @@ export default function Page() {
 
 ---
 
+### fetch() in client components
+
+For now, it's not recommend to use fetch() in client components in next.js version 13.
+
+So, this will cause errors because of the abortController and fetch currently causing multiple rerenders:
+
+```js
+import { useEffect } from 'react';
+
+export default function Page() {
+    useEffect(() => {
+        const abortController = new AbortController();
+
+        fetch('/api/public', { signal: abortController.signal })
+            .then((res) => res.json())
+            .then((data) => console.log({ data }))
+            .catch(error => console.error(error));
+
+        return () => abortController.abort();
+    }, []);
+    return (
+        <>
+            ...page
+        </>
+    );
+}
+```
+
+---
+
 ### api routes
 
 For now, api routes are handled the same as before... in the **/pages/api** folder. This might change in the future.
