@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Header from './components/Header';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import '../styles/mg_base.css';
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
             <head />
             <body id="appWrapper">
                 <Header />
+                <Navbar />
 
                 <div className='page-container'>
                     {children}
