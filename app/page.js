@@ -1,7 +1,12 @@
 export default function Page() {
     return (
-        <p>
-            This is the homepage in the app folder.
-        </p>
+        <>
+            <h2>Homepage</h2>
+
+            <p>
+                This is the homepage in the app folder.
+            </p>
+        </>
+
     );
 }

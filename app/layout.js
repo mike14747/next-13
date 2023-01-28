@@ -1,19 +1,22 @@
 import PropTypes from 'prop-types';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
+import '../styles/mg_base.css';
 import '../styles/globals.css';
 
 export default function RootLayout({ children }) {
     return (
         <html>
             <head />
-            <body>
-                {/* header component will go here */}
+            <body id="appWrapper">
+                <Header />
 
-                <main>
+                <div className='page-container'>
                     {children}
-                </main>
+                </div>
 
-                {/* footer component will go here */}
+                <Footer />
             </body>
         </html>
     );

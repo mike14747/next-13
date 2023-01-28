@@ -148,12 +148,8 @@ You should also mark components as '**use client**' if you add interactivity and
 
 'use client';
 
-export default function ClientComponent({children}) {
-  return (
-    <>
-      {children}
-    </>
-  );
+export default function ClientComponent({ children }) {
+    return <>{children}</>;
 }
 ```
 
@@ -163,16 +159,16 @@ export default function ClientComponent({children}) {
 // /app/page.js
 
 // you can pass a Server Component as a child or prop of a Client Component.
-import ClientComponent from "./ClientComponent";
-import ServerComponent from "./ServerComponent";
+import ClientComponent from './ClientComponent';
+import ServerComponent from './ServerComponent';
 
 // pages are Server Components by default
 export default function Page() {
-  return (
-    <ClientComponent>
-      <ServerComponent />
-    </ClientComponent>
-  );
+    return (
+        <ClientComponent>
+            <ServerComponent />
+        </ClientComponent>
+    );
 }
 ```
 
@@ -194,15 +190,11 @@ export default function Page() {
         fetch('/api/public', { signal: abortController.signal })
             .then((res) => res.json())
             .then((data) => console.log({ data }))
-            .catch(error => console.error(error));
+            .catch((error) => console.error(error));
 
         return () => abortController.abort();
     }, []);
-    return (
-        <>
-            ...page
-        </>
-    );
+    return <>...page</>;
 }
 ```
 
@@ -211,6 +203,62 @@ export default function Page() {
 ### api routes
 
 For now, api routes are handled the same as before... in the **/pages/api** folder. This might change in the future.
+
+---
+
+### Testing with Jest and @testing-library/react
+
+Install the necessary packages.
+
+```bash
+npm install --save-dev jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom
+```
+
+Create a **jest.config.js** file at the root of your app with the following contents:
+
+```js
+const nextJest = require('next/jest');
+
+const createJestConfig = nextJest({
+    // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+    dir: './',
+});
+
+// Add any custom config to be passed to Jest
+/** @type {import('jest').Config} */
+const customJestConfig = {
+    // Add more setup options before each test is run
+    // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+    // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
+    moduleDirectories: ['node_modules', '<rootDir>/'],
+
+    // If you're using [Module Path Aliases](https://nextjs.org/docs/advanced-features/module-path-aliases),
+    // you will have to add the moduleNameMapper in order for jest to resolve your absolute paths.
+    // The paths have to be matching with the paths option within the compilerOptions in the tsconfig.json
+    // For example:
+
+    moduleNameMapper: {
+        '@/(.*)$': '<rootDir>/src/$1',
+    },
+    testEnvironment: 'jest-environment-jsdom',
+};
+
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(customJestConfig);
+```
+
+Add jest to your eslint env in eslintrc.json:
+
+```json
+"env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "jest": true
+    },
+```
+
+Create a **\_\_tests\_\_** folder at the root of your app.
 
 ---
 
