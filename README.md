@@ -38,7 +38,7 @@ npm i -D @babel/core @babel/eslint-parser @types/node @types/react @typescript-e
 I added these folders manually:
 
 ```bash
-mkdir styles public/images app/components types
+mkdir styles public/images app/components types lib lib/api
 ```
 
 You can now run the development server.
@@ -51,7 +51,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ---
 
-### Setting up ESLint
+## Setting up ESLint
 
 I set my **.eslintrc.json** file to look like this:
 
@@ -73,7 +73,7 @@ Then I added my standard rules to it.
 
 ---
 
-### Initial folders/files
+## Initial folders/files
 
 I added my base and global css files to the **/styles** folder (**mg_base.css** and **globals.css**).
 
@@ -87,7 +87,7 @@ Now I have a basic barebones app with a single page.
 
 ---
 
-### The new /app folder
+## The new /app folder
 
 Now that the app is working and the point of this app was to check out the new **/app** folder.
 
@@ -196,7 +196,7 @@ export default function Page() {
 
 ---
 
-### fetch() in client components
+## fetch() in client components
 
 For now, it's not recommend to use fetch() in client components in next.js version 13.
 
@@ -220,15 +220,37 @@ export default function Page() {
 }
 ```
 
----
+It seems like, from my usage, that fetch() in client components is only bad for fetching dynamic data. I may be wrong about that.
 
-### api routes
-
-For now, api routes are handled the same as before... in the **/pages/api** folder. This might change in the future.
+I'm successfully using fetch() in client component for POST, PUT and DELETE methods.
 
 ---
 
-### Testing with Jest and @testing-library/react
+## api routes
+
+All api routes have been moved into the **/app/api** folder. The /pages folder has been completely removed.
+
+---
+
+## Environment variables
+
+I added a .env file with settings for mongodb, next-auth and email.
+
+---
+
+## mongodb
+
+I installed the native mongodb driver:
+
+```bash
+npm i mongodb
+```
+
+Then added my standard connection file (**/lib/mongodb.ts**).
+
+---
+
+## Testing with Jest and @testing-library/react
 
 Install the necessary packages.
 
