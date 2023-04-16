@@ -23,9 +23,9 @@ npx create-next-app
 
 -   You'll be prompted to enter a name for your new next.js app. I entered the project name (which installed the project into the already existent next-13 folder), chose to use Typescript, said yes to use ESLint, no to Tailwind and the following occurred:
 
-    1.  These npm packages were installed: **"@types/node": "18.15.11", "@types/react": "18.0.35", "@types/react-dom": "18.0.11", "eslint": "8.38.0", "eslint-config-next": "13.3.0", "next": "13.3.0", "react": "18.2.0", "react-dom": "18.2.0", "typescript": "5.0.4"** (all as regular dependencies). I don't know why create-next-app doesn't install eslint and eslint-config-next as devDependencies.
-    2.  These files were created at the root of the project: **package.json**, **package-lock.json**, **next.config.js**, **.eslintrc.json**, **tsconfig.json**, **next-env.d.ts** files were created in the project folder.
-    3.  These folders were created: **/app**, **/app/api**, **/public**
+1.  These npm packages were installed: **"@types/node": "18.15.11", "@types/react": "18.0.35", "@types/react-dom": "18.0.11", "eslint": "8.38.0", "eslint-config-next": "13.3.0", "next": "13.3.0", "react": "18.2.0", "react-dom": "18.2.0", "typescript": "5.0.4"** (all as regular dependencies). I don't know why create-next-app doesn't install eslint and eslint-config-next as devDependencies.
+2.  These files were created at the root of the project: **package.json**, **package-lock.json**, **next.config.js**, **.eslintrc.json**, **tsconfig.json**, **next-env.d.ts** files were created in the project folder.
+3.  These folders were created: **/app**, **/app/api**, **/public**
 
 -   Then, I made these changes (uninstalling the things that should be devDependencies, then reinstalling the devDependencies as devDependencies):
 
