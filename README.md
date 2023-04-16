@@ -24,17 +24,21 @@ npx create-next-app
 -   You'll be prompted to enter a name for your new next.js app. I entered the project name (which installed the project into the already existent next-13 folder), chose to use Typescript, said yes to use ESLint, no to Tailwind and the following occurred:
 
     1.  These npm packages were installed: **"@types/node": "18.15.11", "@types/react": "18.0.35", "@types/react-dom": "18.0.11", "eslint": "8.38.0", "eslint-config-next": "13.3.0", "next": "13.3.0", "react": "18.2.0", "react-dom": "18.2.0", "typescript": "5.0.4"** (all as regular dependencies). I don't know why create-next-app doesn't install eslint and eslint-config-next as devDependencies.
-    2.  These files were created at the root of the project: **package.json**, **next.config.js**, **.eslintrc.json** files were created in the project folder.
-    3.  All the folders/files necessary to get started were installed (eg: /pages, /public and styles, plus their subfolders/files).
+    2.  These files were created at the root of the project: **package.json**, **package-lock.json**, **next.config.js**, **.eslintrc.json**, **tsconfig.json**, **next-env.d.ts** files were created in the project folder.
+    3.  These folders were created: **/app**, **/app/api**, **/public**
 
--   Then, I made these changes (installing **@next/font**, uninstalling the things that should be devDependencies, then reinstalling the devDependencies as devDependencies):
+-   Then, I made these changes (uninstalling the things that should be devDependencies, then reinstalling the devDependencies as devDependencies):
 
 ```bash
-npm i @next/font@latest
-
 npm un @types/node @types/react @types/react-dom eslint eslint-config-next typescript
 
 npm i -D @babel/core @babel/eslint-parser @types/node @types/react @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next typescript
+```
+
+I added these folders manually:
+
+```bash
+mkdir styles public/images app/components types
 ```
 
 You can now run the development server.
@@ -71,13 +75,13 @@ Then I added my standard rules to it.
 
 ### Initial folders/files
 
-Emptied the **/styles** folder, then added my standard base css as **globals.css** (which is already being imported into **/pages/\_app.js**).
+I added my base and global css files to the **/styles** folder (**mg_base.css** and **globals.css**).
 
-Emptied the **/public** folder, then added an **/images** subfolder.
+Emptied the items from the root of the **/public** folder.
 
-Emptied the **/pages/api** folder.
+Emptied the **/app/api** folder.
 
-I got rid of most of the content of **/pages/index.js**... making it just a basic functional component displaying a simple message.
+I got rid of most of the content of **/app/page.tsx**... making it just a basic functional component displaying a simple message.
 
 Now I have a basic barebones app with a single page.
 
@@ -85,9 +89,9 @@ Now I have a basic barebones app with a single page.
 
 ### The new /app folder
 
-Now that the app is working and the point of this app was to check out the new **app** folder, I deleted the files in the **/pages** folder (\_app.js and \_document.js and index.js). I did keep the **/api** subfolder though since I plan on using it.
+Now that the app is working and the point of this app was to check out the new **app** folder.
 
-The new routing system in next 13's /app folder is folder based and not file based. Each folder is a route as long as it contains a page.js file within it.
+The new routing system in next 13's /app folder is "folder based" and NOT file based. Each folder is a route as long as it contains a page.js file within it.
 
 You can group folders by placing both of them within a parent folder whose name is enclosed by parenthesis (eg: /app/(group1)/posts and /app/(group1)/authors).
 
@@ -95,18 +99,6 @@ After creating the /app folder, I added a file called **page.js** in it at the r
 
 Upon running the app for the first time, next will create **head.js** and **layout.js** in the app folder.
 
-I've set the initial head.js file like this:
-
-```js
-export default function Head() {
-    return (
-        <>
-            <title>next-13</title>
-            <meta content="width=device-width, initial-scale=1" name="viewport" />
-        </>
-    );
-}
-```
 
 ...and the initial layout.js file like this:
 

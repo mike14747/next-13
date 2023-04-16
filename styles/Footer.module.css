@@ -1,0 +1,20 @@
+.footer {
+    text-align: center;
+    background-color: var(--mg-dark);
+    padding: 1rem;
+    border-top: 4px var(--mg-light) solid;
+    box-shadow: 0 -2px 0 0 var(--mg-green);
+}
+
+.copyright {
+    color: var(--mg-light);
+    font-size: .833rem;
+    font-size: var(--step--1);
+    margin: 0;
+}
+
+@media (min-width: 480px) {
+    .footer {
+        padding-top: 2rem;
+    }
+}
