@@ -77,7 +77,7 @@ Then I added my standard rules to it.
 
 I added my base and global css files to the **/styles** folder (**mg_base.css** and **globals.css**).
 
-Emptied the items from the root of the **/public** folder.
+Emptied the items from the root of the **/public** folder, then moved the default favicon to /public/images.
 
 Emptied the **/app/api** folder.
 
@@ -89,51 +89,71 @@ Now I have a basic barebones app with a single page.
 
 ### The new /app folder
 
-Now that the app is working and the point of this app was to check out the new **app** folder.
+Now that the app is working and the point of this app was to check out the new **/app** folder.
 
-The new routing system in next 13's /app folder is "folder based" and NOT file based. Each folder is a route as long as it contains a page.js file within it.
+The new routing system in next 13's /app folder is "folder based" and NOT file based. Each folder is a route as long as it contains a page.tsx file within it.
 
 You can group folders by placing both of them within a parent folder whose name is enclosed by parenthesis (eg: /app/(group1)/posts and /app/(group1)/authors).
-
-After creating the /app folder, I added a file called **page.js** in it at the root. This will serve as the homepage.
-
-Upon running the app for the first time, next will create **head.js** and **layout.js** in the app folder.
 
 
 ...and the initial layout.js file like this:
 
-```js
-import PropTypes from 'prop-types';
+```tsx
+import { ReactNode } from 'react';
+import { Inter } from 'next/font/google';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-import '../styles/globals.css';
+import '@/styles/mg_base.css';
+import '@/styles/globals.css';
 
-export default function RootLayout({ children }) {
+const defaultFont = Inter({
+    variable: '--font-default',
+    subsets: ['latin'],
+});
+
+export const metadata = {
+    title: 'next-13',
+    description: 'Testing the new appDir',
+    viewport: {
+        width: 'device-width',
+        initialScale: 1,
+        maximumScale: 2,
+    },
+    icons: {
+        icon: [
+            {
+                url: '/images/favicon.ico',
+                sizes: '32x32',
+            },
+        ],
+    },
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html>
-            <head />
-            <body>
-                {/* header component will go here */}
+        <html lang="en">
+            <body id="appWrapper" className={defaultFont.variable}>
+                <Header />
 
-                <main>{children}</main>
+                <div className="page-container">
+                    {children}
+                </div>
 
-                {/* footer component will go here */}
+                <Footer />
             </body>
         </html>
     );
 }
-
-RootLayout.propTypes = {
-    children: PropTypes.node,
-};
 ```
 
-The head and layout components seems to serve the same purpose as the previous Layout component and the \_app.js plus \_document.js page files.
+The layout component seems to serve the same purpose as the previous Layout component and the \_app.js plus \_document.js page files.
 
-If you set the page title (plus meta info, favicon, etc) in the root head.js file, it will provide the <head> info for the entire app's pages. However, you can include as many head.js files as you'd like inside your /app folder structure. If one is found, it will override the root head.js and be applied to only the page.js file in that folder.
+If you set the page title (plus meta info, favicon, etc) in the root layout.tsx file, it will provide the <head> info for the entire app's pages. However, you can include meta info in as many pages as you'd like as long as they are server components. This info will override what is in layout.tsx.
 
 All components in the **/app** folder are **Server Component**s by default.
 
-You only need to mark components as '**use client**' when they use client hooks such as useState or useEffect. It's best to leave components that do not depend on client hooks without the directive so that they can automatically be rendered as a Server Component when they aren't imported by another Client Component.
+You only need to mark components as **use client** when they use client hooks such as useState or useEffect. It's best to leave components that do not depend on client hooks without the directive so that they can automatically be rendered as a Server Component when they aren't imported by another Client Component.
 
 ```js
 'use client';
