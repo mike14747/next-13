@@ -4,7 +4,7 @@
 ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=f5f5f5 'ESLint')
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=f5f5f5 'Vercel')
 
-The purpose of this app is for me to explore the new features in next.js version 13 (new app folder, etc).
+The purpose of this app is for me to explore the new features in next.js version 13 (new app folder, etc) using typescript.
 
 I've created this app using **create-next-app** following these steps:
 
@@ -21,11 +21,21 @@ git clone git@github.com:mike14747/next-13.git
 npx create-next-app
 ```
 
--   You'll be prompted to enter a name for your new next.js app. I entered the project name (which installed the project into the already existent next-13 folder), chose not to use Typescript, said yes to use ESLint and the following occurred:
+-   You'll be prompted to enter a name for your new next.js app. I entered the project name (which installed the project into the already existent next-13 folder), chose to use Typescript, said yes to use ESLint, no to Tailwind and the following occurred:
 
-    1.  These npm pakages were installed: **"@next/font", "eslint": "8.31.0", "eslint-config-next": "13.1.1", "next": "13.1.1", "react": "18.2.0", "react-dom": "18.2.0"** (all as regular dependencies). I don't know why create-next-app doesn't install eslint and eslint-config-next as devDependencies.
+    1.  These npm packages were installed: **"@types/node": "18.15.11", "@types/react": "18.0.35", "@types/react-dom": "18.0.11", "eslint": "8.38.0", "eslint-config-next": "13.3.0", "next": "13.3.0", "react": "18.2.0", "react-dom": "18.2.0", "typescript": "5.0.4"** (all as regular dependencies). I don't know why create-next-app doesn't install eslint and eslint-config-next as devDependencies.
     2.  These files were created at the root of the project: **package.json**, **next.config.js**, **.eslintrc.json** files were created in the project folder.
     3.  All the folders/files necessary to get started were installed (eg: /pages, /public and styles, plus their subfolders/files).
+
+-   Then, I made these changes (installing **@next/font**, uninstalling the things that should be devDependencies, then reinstalling the devDependencies as devDependencies):
+
+```bash
+npm i @next/font@latest
+
+npm un @types/node @types/react @types/react-dom eslint eslint-config-next typescript
+
+npm i -D @babel/core @babel/eslint-parser @types/node @types/react @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next typescript
+```
 
 You can now run the development server.
 
