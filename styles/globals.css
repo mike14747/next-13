@@ -213,7 +213,8 @@ h2.page-heading {
 /* start global form css */
 
 .form {
-    max-width: 30ch;
+    width: 100%;
+    max-width: 288px;
     margin: 0 auto;
 }
 
@@ -236,7 +237,7 @@ h2.page-heading {
 .form > label > input:focus {
     border: 1px var(--mg-orange) solid;
     outline: 0;
-    box-shadow: 0 0 4px 4px var(--mg-orange);
+    box-shadow: 0 0 4px 4px var(--mg-dirt);
 }
 
 .btn-container {
