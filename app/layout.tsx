@@ -1,7 +1,10 @@
 import { ReactNode } from 'react';
 import { Inter } from 'next/font/google';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Authbar from './components/Authbar';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ClientSessionProvider from '@/components/ClientSessionProvider';
+import { Session } from 'next-auth';
 
 import '@/styles/mg_base.css';
 import '@/styles/globals.css';
@@ -29,17 +32,20 @@ export const metadata = {
     },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children, session }: { children: ReactNode; session: Session }) {
     return (
         <html lang="en">
             <body id="appWrapper" className={defaultFont.variable}>
-                <Header />
+                <ClientSessionProvider session={session}>
+                    <Authbar />
+                    <Header />
 
-                <div className="page-container">
-                    {children}
-                </div>
+                    <div className="page-container">
+                        {children}
+                    </div>
 
-                <Footer />
+                    <Footer />
+                </ClientSessionProvider>
             </body>
         </html>
     );
