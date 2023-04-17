@@ -12,7 +12,7 @@ export default async function Directory() {
     });
 
     if (!session) {
-        redirect('/login?callbackUrl=/');
+        redirect('/login?callbackUrl=/test');
     }
 
     return (
