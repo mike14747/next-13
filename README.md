@@ -306,6 +306,12 @@ Create a **\_\_tests\_\_** folder at the root of your app.
 
 ---
 
+## Issues
+
+I'm having a problem with my LoginForm redirect not working properly when deployed on Vercel. It's getting stuck in a redirect loop... though it works fine locally whether in dev mode or with a build.
+
+---
+
 ![next-13](next_13.svg 'next-13')
 ![by Mike Gullo](author.svg 'by Mike Gullo')
 
