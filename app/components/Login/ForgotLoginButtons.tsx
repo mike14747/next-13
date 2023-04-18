@@ -12,7 +12,7 @@ type ForgotLoginButtonsProps = {
     setShowForgotPassword: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function ForgotLoginButtons({ showForgotUsername, setShowForgotUsername, showForgotPassword, setShowForgotPassword }: ForgotLoginButtonsProps) {
+function ForgotLoginButtons({ showForgotUsername, setShowForgotUsername, showForgotPassword, setShowForgotPassword }: ForgotLoginButtonsProps) {
     return (
         <nav aria-label="Forgotten Login Information Navigation">
             <div className={styles.btnContainer}>
@@ -38,3 +38,5 @@ export default function ForgotLoginButtons({ showForgotUsername, setShowForgotUs
         </nav>
     );
 }
+
+export default  ForgotLoginButtons;

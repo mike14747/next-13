@@ -2,13 +2,13 @@
 
 import { FormEvent, ChangeEvent, useRef, useState, useEffect } from 'react';
 import { useSession, signIn } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import FormInput from '@/components/FormInput';
 import Button from '@/components/Button';
 import Spinner from '@/components/Spinner';
 import ForgotLoginInfo from '@/components/Login/ForgotLoginInfo';
 
-export default function LoginForm() {
+function LoginForm() {
     const { status } = useSession();
 
     const searchParams = useSearchParams();
@@ -18,8 +18,6 @@ export default function LoginForm() {
     const notRedirectable = ['/reset-link', '/reset-password-success', '/login'];
     const notRedirectableCheck = notRedirectable.filter(url => redirectUrl.includes(url));
     if (notRedirectableCheck.length > 0) redirectUrl = '/';
-
-    const router = useRouter();
 
     const username = useRef<string>('');
     const password = useRef<string>('');
@@ -37,7 +35,7 @@ export default function LoginForm() {
             username: username.current,
             password: password.current,
             redirect: false,
-            // callbackUrl: redirectUrl,
+            callbackUrl: redirectUrl,
         });
 
         setIsLoading(false);
@@ -48,7 +46,7 @@ export default function LoginForm() {
     };
 
     useEffect(() => {
-        if (status === 'authenticated') router.push(redirectUrl);
+        if (status === 'authenticated') window.location.href = redirectUrl;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status]);
 
@@ -92,3 +90,5 @@ export default function LoginForm() {
 
     return null;
 }
+
+export default LoginForm;

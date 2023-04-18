@@ -8,7 +8,7 @@ import Spinner from '@/components/Spinner';
 
 import styles from '@/styles/ForgotLoginInfo.module.css';
 
-export default function ForgotPassword() {
+function ForgotPassword() {
     const username = useRef<string>('');
     const email = useRef<string>('');
     const [success, setSuccess] = useState<boolean>(false);
@@ -78,3 +78,5 @@ export default function ForgotPassword() {
         </section>
     );
 }
+
+export default  ForgotPassword;

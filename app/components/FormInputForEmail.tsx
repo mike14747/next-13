@@ -4,7 +4,7 @@ import { MutableRefObject, ChangeEvent } from 'react';
 import FormInput from './FormInput';
 import { emailPattern, emailErrorMsg } from '@/lib/formInputPatterns';
 
-export default function FormInputForEmail({ email }: { email: MutableRefObject<string> }) {
+function FormInputForEmail({ email }: { email: MutableRefObject<string> }) {
     return (
         <FormInput
             id="email"
@@ -18,3 +18,5 @@ export default function FormInputForEmail({ email }: { email: MutableRefObject<s
         />
     );
 }
+
+export default FormInputForEmail;

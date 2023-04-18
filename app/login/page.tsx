@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 export default function Login() {
     return (
         <main id="main">
-
             <article className="mw-90ch">
                 <h2 className="page-heading">
                     Login
@@ -20,6 +19,5 @@ export default function Login() {
                 </Suspense>
             </article>
         </main>
-
     );
 }
