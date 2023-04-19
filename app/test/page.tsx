@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'next-13 - Test page',
 };
 
-export default async function Directory() {
+export default async function Test() {
     // const session = await getServerSession({
     //     callbacks: { session: ({ token }) => token },
     // });
@@ -22,17 +22,17 @@ export default async function Directory() {
 
     return (
         <main id="main">
-            <Suspense fallback={<Spinner />}>
-                <article>
-                    <h2 className="page-heading">
-                        Test
-                    </h2>
+            <article>
+                <h2 className="page-heading">
+                    Test
+                </h2>
 
-                    <p>This is a test page to test getServerSession().</p>
+                <p>This is a test page to test getServerSession().</p>
 
+                <Suspense fallback={<Spinner />}>
                     <pre>{JSON.stringify(session, null, 2)}</pre>
-                </article>
-            </Suspense>
+                </Suspense>
+            </article>
         </main >
     );
 }
