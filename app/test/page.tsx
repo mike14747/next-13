@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 // import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../api/auth/[...nextauth]/route';
 import { Suspense } from 'react';
 import Spinner from '@/components/Spinner';
 
@@ -10,11 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Test() {
-    // const session = await getServerSession({
-    //     callbacks: { session: ({ token }) => token },
-    // });
-
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession({
+        callbacks: { session: ({ token }) => token },
+    });
 
     // if (!session) {
     //     redirect('/login?callbackUrl=/test');
