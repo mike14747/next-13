@@ -27,9 +27,7 @@ export default async function Directory() {
 
                 <p>This is a test page to test getServerSession().</p>
 
-                <pre>
-                    {JSON.stringify(session, null, '  ')}
-                </pre>
+                <pre>{JSON.stringify(session, null, 2)}</pre>
             </article>
         </main >
     );
