@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-// import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth/next';
 import { Suspense } from 'react';
 import Spinner from '@/components/Spinner';
@@ -13,9 +13,9 @@ export default async function Test() {
         callbacks: { session: ({ token }) => token },
     });
 
-    // if (!session) {
-    //     redirect('/login?callbackUrl=/test');
-    // }
+    if (!session) {
+        redirect('/login?callbackUrl=/test');
+    }
 
     return (
         <main id="main">
