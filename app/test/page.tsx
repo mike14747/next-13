@@ -13,8 +13,6 @@ export default async function Test() {
         callbacks: { session: ({ token }) => token },
     });
 
-    console.log({ session });
-
     if (!session) {
         redirect('/login?callbackUrl=/test');
     }
