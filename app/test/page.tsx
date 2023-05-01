@@ -1,22 +1,21 @@
 import type { Metadata } from 'next';
-// import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { Suspense } from 'react';
+import Spinner from '@/components/Spinner';
 
 export const metadata: Metadata = {
     title: 'next-13 - Test page',
 };
 
-export default async function Directory() {
-    // const session = await getServerSession({
-    //     callbacks: { session: ({ token }) => token },
-    // });
+export default async function Test() {
+    const session = await getServerSession({
+        callbacks: { session: ({ token }) => token },
+    });
 
-    const session = await getServerSession(authOptions);
-
-    // if (!session) {
-    //     redirect('/login?callbackUrl=/test');
-    // }
+    if (!session) {
+        redirect('/login?callbackUrl=/test');
+    }
 
     return (
         <main id="main">
@@ -27,9 +26,9 @@ export default async function Directory() {
 
                 <p>This is a test page to test getServerSession().</p>
 
-                <pre>
-                    {JSON.stringify(session, null, '  ')}
-                </pre>
+                <Suspense fallback={<Spinner />}>
+                    <pre>{JSON.stringify(session, null, 2)}</pre>
+                </Suspense>
             </article>
         </main >
     );
