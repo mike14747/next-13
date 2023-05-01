@@ -163,7 +163,7 @@ import { useState } from 'react';
 
 You should also mark components as '**use client**' if you add interactivity and event listeners (onClick(), onChange(), etc).
 
-**NOTE**: You cannot import a server component into a client component. You can pass a Server Component as a child or prop of a Client Component. You can do this by wrapping both components in another Server Component.
+> **NOTE**: You cannot import a server component into a client component. You can pass a Server Component as a child or prop of a Client Component. You can do this by wrapping both components in another Server Component.
 
 ```js
 // /app/ClientComponent.js
